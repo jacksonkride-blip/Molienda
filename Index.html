@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Molienda · Mantequilla de maní artesanal</title>
+  <meta name="description" content="Mantequilla de maní artesanal en pequeños lotes. Clásica y con chocolate, sin aditivos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style type="text/tailwindcss">
+    @custom-variant choco (&:where([data-flavor="chocolate"], [data-flavor="chocolate"] *));
+    @theme {
+      --font-display: "Fraunces", Georgia, serif;
+      --font-sans: "Figtree", system-ui, sans-serif;
+      --color-paper: oklch(0.985 0.01 85);
+      --color-cream: oklch(0.955 0.022 80);
+      --color-sand: oklch(0.9 0.04 75);
+      --color-ink: oklch(0.25 0.035 45);
+      --color-muted: oklch(0.46 0.035 50);
+      --color-peanut: oklch(0.7 0.12 68);
+      --color-peanut-deep: oklch(0.56 0.11 60);
+      --color-cacao: oklch(0.3 0.05 40);
+      --color-cacao-soft: oklch(0.4 0.055 42);
+      --color-terra: oklch(0.55 0.14 38);
+      --color-ok: oklch(0.5 0.11 150);
+      --animate-spin-slow: spin 28s linear infinite;
+      --animate-rise: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    }
+  </style>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: oklch(0.955 0.022 80); color: oklch(0.25 0.035 45); font-family: "Figtree", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    :focus-visible { outline: 2px solid oklch(0.55 0.14 38); outline-offset: 3px; }
+    .grain { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.3  0 0 0 0 0.2  0 0 0 0 0.1  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+  </style>
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header id="header" class="fixed inset-x-0 top-0 z-50 py-5 transition-all duration-300">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 md:px-10">
+      <a href="#top" class="font-display text-2xl italic tracking-tight text-ink md:text-3xl">Molienda<span class="text-terra">.</span></a>
+      <nav aria-label="Principal" class="hidden items-center gap-9 md:flex">
+        <a href="#sabores" class="text-sm font-medium text-ink/80 hover:text-terra">Sabores</a>
+        <a href="#proceso" class="text-sm font-medium text-ink/80 hover:text-terra">Proceso</a>
+        <a href="#pedido" class="text-sm font-medium text-ink/80 hover:text-terra">Pedido</a>
+      </nav>
+      <a href="#pedido" class="flex items-center gap-2.5 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper transition-all hover:bg-terra">
+        <i data-lucide="shopping-bag" class="h-4 w-4"></i>
+        <span>Mi pedido</span>
+        <span id="cart-count" class="grid h-5 min-w-5 place-items-center rounded-full bg-paper/20 px-1 text-xs">0</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- PORTADA -->
+    <section id="top" data-flavor="clasica" class="grain relative overflow-hidden bg-cream pt-28 pb-16 text-ink transition-colors duration-700 choco:bg-cacao choco:text-paper md:pt-36 md:pb-24">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 md:grid-cols-12 md:px-10">
+        <div class="animate-rise md:col-span-7">
+          <p class="mb-6 text-xs font-semibold uppercase tracking-[0.3em] text-terra choco:text-peanut">Mantequilla de maní artesanal · Lotes pequeños</p>
+          <h1 class="font-display text-5xl leading-[0.95] font-light tracking-tight sm:text-6xl lg:text-[5.5rem]">
+            Molida despacio.<br>
+            <em class="font-normal text-peanut-deep choco:text-peanut">Hecha para untar.</em>
+          </h1>
+          <p class="mt-8 max-w-md text-lg leading-relaxed text-muted choco:text-paper/80">
+            Tostamos el maní cada semana y lo molemos a piedra en tandas de 40 tarros. Sin aceites añadidos, sin conservantes, sin atajos.
+          </p>
+          <div class="mt-10">
+            <p class="mb-3 text-sm text-muted choco:text-paper/70">Elige tu sabor</p>
+            <div role="radiogroup" aria-label="Elige un sabor" class="inline-flex rounded-full bg-sand p-1.5 choco:bg-paper/10">
+              <button data-flavor-btn="clasica" role="radio" aria-checked="true" class="rounded-full px-6 py-3 text-sm font-semibold text-ink/70 transition-all duration-300 hover:text-ink aria-checked:bg-ink aria-checked:text-paper aria-checked:shadow-lg choco:text-paper/75 choco:hover:text-paper choco:aria-checked:bg-peanut choco:aria-checked:text-cacao">Clásica</button>
+              <button data-flavor-btn="chocolate" role="radio" aria-checked="false" class="rounded-full px-6 py-3 text-sm font-semibold text-ink/70 transition-all duration-300 hover:text-ink aria-checked:bg-ink aria-checked:text-paper aria-checked:shadow-lg choco:text-paper/75 choco:hover:text-paper choco:aria-checked:bg-peanut choco:aria-checked:text-cacao">Con Chocolate</button>
+            </div>
+          </div>
+          <a href="#sabores" class="mt-12 inline-flex items-center gap-2 text-sm font-semibold underline-offset-4 hover:underline">
+            Conoce los sabores <i data-lucide="arrow-down" class="h-4 w-4"></i>
+          </a>
+        </div>
+
+        <div class="relative mx-auto w-full max-w-sm md:col-span-5 md:max-w-none">
+          <div aria-hidden="true" class="absolute -inset-6 rounded-full bg-peanut/30 transition-colors duration-700 choco:bg-cacao-soft md:-inset-10"></div>
+          <div class="relative aspect-[4/5] overflow-hidden rounded-t-full rounded-b-[2.5rem] border-8 border-paper/60 shadow-2xl">
+            <img data-img="clasica" alt="Tarro de mantequilla de maní clásica" class="absolute inset-0 h-full w-full scale-100 object-cover opacity-100 transition-all duration-700 choco:scale-105 choco:opacity-0">
+            <img data-img="chocolate" alt="Tarro de mantequilla de maní con chocolate" class="absolute inset-0 h-full w-full scale-105 object-cover opacity-0 transition-all duration-700 choco:scale-100 choco:opacity-100">
+          </div>
+          <div aria-hidden="true" class="absolute -bottom-6 -left-6 grid h-32 w-32 place-items-center rounded-full bg-ink text-paper transition-colors duration-700 choco:bg-peanut choco:text-cacao md:h-36 md:w-36">
+            <svg viewBox="0 0 200 200" class="absolute inset-0 h-full w-full animate-spin-slow">
+              <defs><path id="stamp-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" /></defs>
+              <text fill="currentColor" style="font: 600 15px Figtree, sans-serif; letter-spacing: 0.32em; text-transform: uppercase;">
+                <textPath href="#stamp-circle">Molido a piedra · Lote Nº 027 · </textPath>
+              </text>
+            </svg>
+            <span id="stamp-center" class="font-display text-3xl italic leading-none">100%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALORES -->
+    <section aria-label="Nuestros principios" class="border-y border-sand bg-paper">
+      <ul class="mx-auto grid max-w-7xl grid-cols-1 divide-sand sm:grid-cols-2 sm:divide-x lg:grid-cols-4">
+        <li class="flex gap-4 border-b border-sand px-6 py-8 sm:border-b-0 md:px-8"><i data-lucide="leaf" class="mt-0.5 h-6 w-6 shrink-0 text-terra"></i><div><h3 class="font-display text-lg">Ingredientes simples</h3><p class="mt-1 text-sm text-muted">Maní, sal de mar y, si quieres, cacao.</p></div></li>
+        <li class="flex gap-4 border-b border-sand px-6 py-8 sm:border-b-0 md:px-8"><i data-lucide="flame" class="mt-0.5 h-6 w-6 shrink-0 text-terra"></i><div><h3 class="font-display text-lg">Tostado semanal</h3><p class="mt-1 text-sm text-muted">Cada lote se tuesta la misma semana que se envasa.</p></div></li>
+        <li class="flex gap-4 border-b border-sand px-6 py-8 sm:border-b-0 md:px-8"><i data-lucide="ban" class="mt-0.5 h-6 w-6 shrink-0 text-terra"></i><div><h3 class="font-display text-lg">Sin aditivos</h3><p class="mt-1 text-sm text-muted">Sin aceite de palma, conservantes ni estabilizantes.</p></div></li>
+        <li class="flex gap-4 px-6 py-8 md:px-8"><i data-lucide="package" class="mt-0.5 h-6 w-6 shrink-0 text-terra"></i><div><h3 class="font-display text-lg">Lotes de 40</h3><p class="mt-1 text-sm text-muted">Tarros numerados a mano, de vidrio reutilizable.</p></div></li>
+      </ul>
+    </section>
+
+    <!-- SABORES -->
+    <section id="sabores" class="scroll-mt-20 py-24 md:py-32">
+      <div class="mx-auto max-w-7xl px-5 md:px-10">
+        <div class="mb-16 flex flex-col justify-between gap-6 md:mb-24 md:flex-row md:items-end">
+          <h2 class="max-w-xl font-display text-4xl leading-tight font-light tracking-tight md:text-5xl">Dos sabores. <em class="text-peanut-deep">Ninguno con prisa.</em></h2>
+          <p class="max-w-sm text-muted">Elige el tamaño, añádelo a tu pedido y nosotros nos encargamos del resto.</p>
+        </div>
+        <div id="products" class="space-y-24 md:space-y-32"></div>
+      </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section id="proceso" class="grain scroll-mt-20 bg-cacao py-24 text-paper md:py-32">
+      <div class="mx-auto grid max-w-7xl gap-14 px-5 md:grid-cols-12 md:px-10">
+        <div class="md:col-span-5">
+          <p class="text-xs font-semibold uppercase tracking-[0.3em] text-peanut">El proceso</p>
+          <h2 class="mt-4 font-display text-4xl leading-tight font-light tracking-tight md:text-5xl">Tres pasos, <em class="text-peanut">cero atajos.</em></h2>
+          <div class="mt-10 overflow-hidden rounded-[2.5rem]">
+            <img src="molino.webp" alt="Maní tostado siendo molido en un molino de piedra" class="aspect-[3/2] w-full object-cover" loading="lazy">
+          </div>
+        </div>
+        <ol class="md:col-span-6 md:col-start-7 md:pt-24">
+          <li class="flex gap-6 border-t border-paper/15 py-9"><span class="font-display text-5xl leading-none text-peanut italic">1</span><div><h3 class="font-display text-2xl">Tostamos</h3><p class="mt-2 leading-relaxed text-paper/75">Maní entero, tostado en horno a baja temperatura hasta que huele a domingo por la mañana.</p></div></li>
+          <li class="flex gap-6 border-t border-paper/15 py-9"><span class="font-display text-5xl leading-none text-peanut italic">2</span><div><h3 class="font-display text-2xl">Molemos a piedra</h3><p class="mt-2 leading-relaxed text-paper/75">Un molino de piedra lo convierte en crema despacio, sin calentarlo de más, para conservar su sabor.</p></div></li>
+          <li class="flex gap-6 border-y border-paper/15 py-9"><span class="font-display text-5xl leading-none text-peanut italic">3</span><div><h3 class="font-display text-2xl">Envasamos a mano</h3><p class="mt-2 leading-relaxed text-paper/75">Cada tarro se llena, se sella y se numera el mismo día. Así llega a tu mesa fresco.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CÓMO DISFRUTARLA -->
+    <section class="py-24 md:py-32">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 md:grid-cols-12 md:px-10">
+        <div class="relative md:col-span-7">
+          <img src="tostada.webp" alt="Tostada con mantequilla de maní, plátano y miel" class="aspect-[4/3] w-full rounded-[2.5rem] object-cover" loading="lazy">
+          <blockquote class="absolute -bottom-10 right-4 max-w-xs rounded-3xl bg-paper p-6 shadow-xl md:-right-10">
+            <p class="font-display text-xl leading-snug italic">"Sabe a maní de verdad. Ya no puedo volver a la del supermercado."</p>
+            <footer class="mt-3 text-sm text-muted">Valentina, clienta desde el lote 003</footer>
+          </blockquote>
+        </div>
+        <div class="mt-12 md:col-span-4 md:col-start-9 md:mt-0">
+          <p class="text-xs font-semibold uppercase tracking-[0.3em] text-terra">Cómo disfrutarla</p>
+          <h2 class="mt-4 font-display text-4xl leading-tight font-light tracking-tight">Un pequeño ritual diario.</h2>
+          <ul class="mt-8 space-y-4 text-muted">
+            <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-peanut-deep"></span>Sobre pan de masa madre con plátano y miel</li>
+            <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-peanut-deep"></span>En la avena o el yogur de la mañana</li>
+            <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-peanut-deep"></span>Con manzana verde en rodajas</li>
+            <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-peanut-deep"></span>Directo del tarro, con cuchara (no juzgamos)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PEDIDO -->
+    <section id="pedido" class="scroll-mt-20 bg-paper py-24 md:py-32">
+      <div class="mx-auto max-w-7xl px-5 md:px-10">
+        <div class="mb-14 max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.3em] text-terra">Haz tu pedido</p>
+          <h2 class="mt-4 font-display text-4xl leading-tight font-light tracking-tight md:text-5xl">Elige tus tarros, <em class="text-peanut-deep">nosotros te escribimos.</em></h2>
+          <p class="mt-5 text-lg text-muted">Envíanos tu pedido por WhatsApp y coordinamos el pago y la entrega. Sin pagos en línea, sin complicaciones.</p>
+        </div>
+        <div class="grid gap-10 lg:grid-cols-12">
+          <div class="lg:col-span-5">
+            <div class="rounded-[2rem] bg-cream p-6 md:p-8">
+              <h3 class="font-display text-2xl">Tu pedido</h3>
+              <ul id="order-list" class="mt-6 divide-y divide-sand"></ul>
+              <div class="mt-4 flex items-baseline justify-between border-t-2 border-ink pt-5">
+                <span class="text-sm font-semibold uppercase tracking-[0.2em]">Total estimado</span>
+                <span id="order-total" class="font-display text-3xl tabular-nums">$0.00</span>
+              </div>
+              <p class="mt-3 text-xs text-muted">El costo de envío, si aplica, se confirma al contactarte. No se cobra nada en este paso.</p>
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <form id="order-form" class="space-y-5">
+              <div class="grid gap-5 sm:grid-cols-2">
+                <label class="block"><span class="mb-1.5 block text-sm font-medium">Nombre <span class="text-terra">*</span></span>
+                  <input name="name" required autocomplete="name" placeholder="Tu nombre" class="w-full rounded-2xl border border-ink/15 bg-paper px-4 py-3.5 focus:border-terra focus:outline-none focus:ring-2 focus:ring-terra/20"></label>
+                <label class="block"><span class="mb-1.5 block text-sm font-medium">Teléfono <span class="text-terra">*</span></span>
+                  <input name="phone" type="tel" required autocomplete="tel" placeholder="Para coordinar" class="w-full rounded-2xl border border-ink/15 bg-paper px-4 py-3.5 focus:border-terra focus:outline-none focus:ring-2 focus:ring-terra/20"></label>
+              </div>
+              <label class="block"><span class="mb-1.5 block text-sm font-medium">Correo electrónico</span>
+                <input name="email" type="email" autocomplete="email" placeholder="tu@correo.com" class="w-full rounded-2xl border border-ink/15 bg-paper px-4 py-3.5 focus:border-terra focus:outline-none focus:ring-2 focus:ring-terra/20"></label>
+              <fieldset>
+                <legend class="mb-1.5 text-sm font-medium">Entrega</legend>
+                <div class="grid grid-cols-2 gap-2">
+                  <label class="cursor-pointer rounded-2xl border border-ink/15 bg-paper px-4 py-3.5 text-center text-sm font-semibold transition-all hover:border-ink/40 has-checked:border-ink has-checked:bg-ink has-checked:text-paper">
+                    <input type="radio" name="delivery" value="Envío a domicilio" checked class="sr-only">Envío a domicilio</label>
+                  <label class="cursor-pointer rounded-2xl border border-ink/15 bg-paper px-4 py-3.5 text-center text-sm font-semibold transition-all hover:border-ink/40 has-checked:border-ink has-checked:bg-ink has-checked:text-paper">
+                    <input type="radio" name="delivery" value="Retiro en taller" class="sr-only">Retiro en taller</label>
+                </div>
+              </fieldset>
+              <label id="address-wrap" class="block"><span class="mb-1.5 block text-sm font-medium">Dirección de entrega <span class="text-terra">*</span></span>
+                <input name="address" required autocomplete="street-address" placeholder="Calle, número, ciudad" class="w-full rounded-2xl border border-ink/15 bg-paper px-4 py-3.5 focus:border-terra focus:outline-none focus:ring-2 focus:ring-terra/20"></label>
+              <label class="block"><span class="mb-1.5 block text-sm font-medium">Notas (opcional)</span>
+                <textarea name="notes" rows="3" placeholder="Horario preferido, es un regalo, etc." class="w-full rounded-2xl border border-ink/15 bg-paper px-4 py-3.5 focus:border-terra focus:outline-none focus:ring-2 focus:ring-terra/20"></textarea></label>
+              <button id="submit-btn" type="submit" disabled class="flex w-full items-center justify-center gap-2 rounded-full bg-terra px-8 py-4 font-semibold text-paper transition-all hover:bg-ink active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-ink/30">
+                <i data-lucide="send" class="h-4 w-4"></i><span id="submit-label">Añade al menos un tarro</span>
+              </button>
+            </form>
+
+            <div id="order-success" role="status" class="hidden h-full flex-col items-start justify-center rounded-[2rem] bg-cacao p-8 text-paper md:p-12">
+              <i data-lucide="check-circle-2" class="h-12 w-12 text-peanut"></i>
+              <h3 class="mt-6 font-display text-4xl font-light">¡Gracias, <em id="success-name" class="text-peanut"></em>!</h3>
+              <p class="mt-4 max-w-sm leading-relaxed text-paper/80">Se abrió WhatsApp con tu pedido listo. Solo pulsa enviar y te responderemos para confirmar el pago y la entrega.</p>
+              <button id="reset-btn" class="mt-8 rounded-full border border-paper/30 px-6 py-3 text-sm font-semibold transition-colors hover:bg-paper hover:text-cacao">Hacer otro pedido</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE -->
+  <footer class="grain bg-ink text-paper">
+    <div class="mx-auto max-w-7xl px-5 py-16 md:px-10">
+      <div class="flex flex-col justify-between gap-10 md:flex-row md:items-end">
+        <div>
+          <p class="font-display text-6xl italic tracking-tight md:text-8xl">Molienda<span class="text-peanut">.</span></p>
+          <p class="mt-4 max-w-sm text-paper/70">Mantequilla de maní artesanal, tostada y molida en pequeños lotes.</p>
+        </div>
+        <nav aria-label="Pie de página" class="flex gap-8 text-sm">
+          <a href="#sabores" class="text-paper/80 hover:text-peanut">Sabores</a>
+          <a href="#proceso" class="text-paper/80 hover:text-peanut">Proceso</a>
+          <a href="#pedido" class="text-paper/80 hover:text-peanut">Pedido</a>
+        </nav>
+      </div>
+      <div class="mt-12 flex flex-col justify-between gap-2 border-t border-paper/15 pt-6 text-xs text-paper/60 sm:flex-row">
+        <p>© <span id="year"></span> Molienda. Hecho a mano.</p>
+        <p>Contiene maní. Elaborado en un taller que procesa frutos secos.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ====== CONFIGURA AQUÍ ======
+    const WHATSAPP = "56912345678"; // Tu número con código de país, sin + ni espacios
+    const IMG = { clasica: "tarro-clasica.webp", chocolate: "tarro-chocolate.webp" };
+    const PRICES = { clasica: { "250": 7, "500": 12 }, chocolate: { "250": 8, "500": 14 } };
+    // ============================
+
+    const FLAVORS = [
+      { id: "clasica", name: "Clásica", tagline: "Solo maní tostado",
+        description: "Maní seleccionado, tostado lento y molido a piedra hasta lograr una crema suave y profunda. Nada más.",
+        ingredients: "100% maní tostado, una pizca de sal de mar.",
+        notes: ["Tostado medio", "Textura cremosa", "Sin azúcar añadida"] },
+      { id: "chocolate", name: "Con Chocolate", tagline: "Maní y cacao real",
+        description: "Nuestra receta clásica fundida con cacao amargo. Intensa, apenas dulce y peligrosamente fácil de terminar.",
+        ingredients: "Maní tostado, cacao 70%, azúcar de caña, sal de mar.",
+        notes: ["Cacao 70%", "Dulzor suave", "Sin aceite de palma"] },
+    ];
+    const SIZES = [{ id: "250", label: "250 g" }, { id: "500", label: "500 g" }];
+    const money = (n) => "$" + n.toFixed(2);
+    const key = (f, s) => f + "-" + s;
+    let cart = {};
+
+    // Imágenes de la portada
+    document.querySelectorAll("[data-img]").forEach((el) => (el.src = IMG[el.dataset.img]));
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Encabezado al hacer scroll
+    const header = document.getElementById("header");
+    const onScroll = () => {
+      const s = window.scrollY > 24;
+      header.classList.toggle("py-5", !s);
+      header.classList.toggle("py-3", s);
+      header.classList.toggle("bg-paper/90", s);
+      header.classList.toggle("backdrop-blur", s);
+      header.classList.toggle("shadow-sm", s);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Selector de sabor en la portada
+    const hero = document.getElementById("top");
+    document.querySelectorAll("[data-flavor-btn]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const f = btn.dataset.flavorBtn;
+        hero.dataset.flavor = f;
+        document.querySelectorAll("[data-flavor-btn]").forEach((b) => b.setAttribute("aria-checked", String(b === btn)));
+        document.getElementById("stamp-center").textContent = f === "chocolate" ? "70%" : "100%";
+      });
+    });
+
+    // Productos
+    const productRow = (f, i) => {
+      const rev = i % 2 === 1;
+      return `
+      <article class="grid items-center gap-10 md:grid-cols-12 md:gap-16">
+        <div class="relative md:col-span-6 ${rev ? "md:order-2" : ""}">
+          <div class="overflow-hidden rounded-[2.5rem]">
+            <img src="${IMG[f.id]}" alt="Tarro de mantequilla de maní ${f.name.toLowerCase()}" class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy">
+          </div>
+          <span aria-hidden="true" class="absolute top-6 font-display text-[7rem] leading-none italic md:text-[9rem] ${rev ? "-left-2 md:-left-10" : "-right-2 md:-right-10"} ${f.id === "chocolate" ? "text-cacao" : "text-peanut-deep"}">0${i + 1}</span>
+        </div>
+        <div class="md:col-span-6 ${rev ? "md:order-1" : ""}">
+          <p class="text-xs font-semibold uppercase tracking-[0.3em] text-terra">${f.tagline}</p>
+          <h3 class="mt-3 font-display text-5xl font-light tracking-tight md:text-6xl">${f.name}</h3>
+          <p class="mt-6 max-w-md text-lg leading-relaxed text-muted">${f.description}</p>
+          <ul class="mt-6 flex flex-wrap gap-2">${f.notes.map((n) => `<li class="rounded-full border border-ink/15 px-4 py-1.5 text-sm">${n}</li>`).join("")}</ul>
+          <p class="mt-6 border-l-2 border-peanut pl-4 text-sm text-muted"><span class="font-semibold text-ink">Ingredientes: </span>${f.ingredients}</p>
+          <div class="mt-8 flex flex-wrap items-end gap-6">
+            <fieldset>
+              <legend class="mb-2 text-sm text-muted">Tamaño</legend>
+              <div class="flex gap-2">
+                ${SIZES.map((s) => `
+                  <label class="cursor-pointer rounded-2xl border border-ink/20 px-4 py-2.5 text-center transition-all hover:border-ink/50 has-checked:border-ink has-checked:bg-ink has-checked:text-paper">
+                    <input type="radio" name="size-${f.id}" value="${s.id}" ${s.id === "250" ? "checked" : ""} class="sr-only">
+                    <span class="block text-sm font-semibold">${s.label}</span>
+                    <span class="block text-xs opacity-75">${money(PRICES[f.id][s.id])}</span>
+                  </label>`).join("")}
+              </div>
+            </fieldset>
+            <button data-add="${f.id}" class="inline-flex items-center gap-2 rounded-full bg-terra px-7 py-4 text-sm font-semibold text-paper transition-all hover:bg-ink active:scale-95">
+              <span>+ Añadir al pedido</span>
+            </button>
+          </div>
+        </div>
+      </article>`;
+    };
+    document.getElementById("products").innerHTML = FLAVORS.map(productRow).join("");
+
+    document.getElementById("products").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-add]");
+      if (!btn) return;
+      const f = btn.dataset.add;
+      const s = document.querySelector(`input[name="size-${f}"]:checked`).value;
+      const k = key(f, s);
+      cart[k] = Math.min(20, (cart[k] || 0) + 1);
+      renderOrder();
+      const label = btn.querySelector("span");
+      btn.classList.replace("bg-terra", "bg-ok");
+      label.textContent = "✓ Añadido al pedido";
+      setTimeout(() => { btn.classList.replace("bg-ok", "bg-terra"); label.textContent = "+ Añadir al pedido"; }, 1600);
+    });
+
+    // Lista del pedido
+    const lines = () => FLAVORS.flatMap((f) => SIZES.map((s) => {
+      const qty = cart[key(f.id, s.id)] || 0;
+      const price = PRICES[f.id][s.id];
+      return { qty, price, label: `${f.name} ${s.label}`, subtotal: qty * price };
+    })).filter((l) => l.qty > 0);
+
+    function renderOrder() {
+      document.getElementById("order-list").innerHTML = FLAVORS.flatMap((f) => SIZES.map((s) => {
+        const k = key(f.id, s.id);
+        const qty = cart[k] || 0;
+        return `
+        <li class="flex items-center gap-4 py-4 ${qty ? "" : "opacity-70"}">
+          <img src="${IMG[f.id]}" alt="" class="h-14 w-12 shrink-0 rounded-xl object-cover">
+          <div class="min-w-0 flex-1">
+            <p class="font-semibold">${f.name}</p>
+            <p class="text-sm text-muted">${s.label} · ${money(PRICES[f.id][s.id])}</p>
+          </div>
+          <div class="flex items-center gap-1 rounded-full border border-ink/15 bg-paper p-1">
+            <button type="button" data-k="${k}" data-d="-1" ${qty === 0 ? "disabled" : ""} aria-label="Quitar uno" class="grid h-9 w-9 place-items-center rounded-full text-lg hover:bg-sand disabled:opacity-30">−</button>
+            <span class="w-6 text-center font-semibold tabular-nums">${qty}</span>
+            <button type="button" data-k="${k}" data-d="1" aria-label="Añadir uno" class="grid h-9 w-9 place-items-center rounded-full text-lg hover:bg-sand">+</button>
+          </div>
+        </li>`;
+      })).join("");
+
+      const ls = lines();
+      const total = ls.reduce((a, l) => a + l.subtotal, 0);
+      const count = ls.reduce((a, l) => a + l.qty, 0);
+      document.getElementById("order-total").textContent = money(total);
+      const badge = document.getElementById("cart-count");
+      badge.textContent = count;
+      badge.classList.toggle("bg-peanut", count > 0);
+      badge.classList.toggle("text-ink", count > 0);
+      badge.classList.toggle("bg-paper/20", count === 0);
+      document.getElementById("submit-btn").disabled = count === 0;
+      document.getElementById("submit-label").textContent = count === 0 ? "Añade al menos un tarro" : "Enviar pedido por WhatsApp";
+    }
+
+    document.getElementById("order-list").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-k]");
+      if (!b) return;
+      const k = b.dataset.k;
+      cart[k] = Math.max(0, Math.min(20, (cart[k] || 0) + Number(b.dataset.d)));
+      renderOrder();
+    });
+
+    // Entrega: mostrar u ocultar dirección
+    const form = document.getElementById("order-form");
+    const addressWrap = document.getElementById("address-wrap");
+    form.querySelectorAll('input[name="delivery"]').forEach((r) => r.addEventListener("change", () => {
+      const ship = form.delivery.value === "Envío a domicilio";
+      addressWrap.classList.toggle("hidden", !ship);
+      form.address.required = ship;
+    }));
+
+    // Enviar pedido por WhatsApp
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const d = Object.fromEntries(new FormData(form));
+      const ls = lines();
+      const total = ls.reduce((a, l) => a + l.subtotal, 0);
+      const msg = [
+        "Hola Molienda, quiero hacer un pedido:",
+        "",
+        ...ls.map((l) => `• ${l.qty} x ${l.label} (${money(l.price)} c/u) = ${money(l.subtotal)}`),
+        "",
+        `Total estimado: ${money(total)}`,
+        `Nombre: ${d.name}`,
+        `Teléfono: ${d.phone}`,
+        d.email ? `Correo: ${d.email}` : "",
+        `Entrega: ${d.delivery}`,
+        d.delivery === "Envío a domicilio" ? `Dirección: ${d.address}` : "",
+        d.notes ? `Notas: ${d.notes}` : "",
+      ].filter((l, i, arr) => l !== "" || arr[i - 1] !== "").join("\n");
+
+      window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
+
+      document.getElementById("success-name").textContent = d.name.split(" ")[0];
+      form.classList.add("hidden");
+      const ok = document.getElementById("order-success");
+      ok.classList.remove("hidden");
+      ok.classList.add("flex");
+      cart = {};
+      form.reset();
+      renderOrder();
+    });
+
+    document.getElementById("reset-btn").addEventListener("click", () => {
+      const ok = document.getElementById("order-success");
+      ok.classList.add("hidden");
+      ok.classList.remove("flex");
+      form.classList.remove("hidden");
+      addressWrap.classList.remove("hidden");
+      form.address.required = true;
+    });
+
+    renderOrder();
+    lucide.createIcons();
+  </script>
+</body>
+</html>
